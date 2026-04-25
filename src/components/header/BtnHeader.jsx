@@ -3,19 +3,23 @@ import { IoMdArrowDropdown, IoMdPersonAdd } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { MdOutlineLogout } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+const NavLinks = [
+  { title: "Home", link: "/", id: 1 },
+  { title: "About", link: "/about", id: 2 },
+  { title: "Accessories", link: "/accessories", id: 3 },
+  { title: "Blog", link: "/blog", id: 4 },
+  { title: "Contact", link: "/contact", id: 5 },
+];
 
 function BtnHeader() {
-  const [showList , setShow] =useState(false);
-   
   const location = useLocation(); 
   const [categories, setCategories] = useState([]);
-  const NavLinks = [
-    { title: "Home", link: "/", id: 1 },
-    { title: "About", link: "/about", id: 2 },
-    { title: "Accessories", link: "/accessories", id: 3 },
-    { title: "Blog", link: "/blog", id: 4 },
-    { title: "Contact", link: "/contact", id: 5 },
-  ];
+  const [showList , setShow] =useState(false);
+
+ useEffect(() => { 
+  setShow(false)
+  },[location])
+   
   useEffect(() => {
     fetch("https://dummyjson.com/products/categories")
       .then((res) => res.json())

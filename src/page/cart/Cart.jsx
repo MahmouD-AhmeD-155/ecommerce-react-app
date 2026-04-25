@@ -2,11 +2,15 @@ import React, { useContext } from "react";
 import { CartContext } from "../../components/context/CartContext";
 import { FaTrashAlt } from "react-icons/fa";
 import "./cart.css";
+import MotionPage from "../../components/MotionPage";
 function Cart() {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems ,increaseQuantity,decreaseQuantity ,removeFromCart} = useContext(CartContext);
 
-  const total = cartItems.reduce((acc, item) => acc + item.price, 0);
+  const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   return (
+
+    <MotionPage >
+
     <div className="checkout">
       <div className="order-summary">
         <h1>Order Summary</h1>
@@ -25,14 +29,14 @@ function Cart() {
                     <p className="price-item">${item.price}</p>
 
                     <div className="quantity-control">
-                      <button>-</button>
-                      <span className="quantity">1</span>
-                      <button>+</button>
+                    <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                      <span className="quantity">{item.quantity}</span>
+                      <button onClick={() => increaseQuantity(item.id)}>+</button>
                     </div>
                   </div>
 
                 </div>
-                  <button className="delete-item">
+                  <button onClick={() => removeFromCart(item.id)} className="delete-item">
                     <FaTrashAlt />
                   </button>
               </div>
@@ -52,6 +56,8 @@ function Cart() {
       </div>
     </div>
       </div>
+
+      </MotionPage>
   );
 }
 

@@ -3,17 +3,18 @@ import HeroSlider from '../../components/heroSlider/HeroSlider'
 import "./home.css"
 import SlideProduct from '../../components/slideProducts/SlideProduct'
 import { GiSandsOfTime } from 'react-icons/gi'
+import MotionPage from '../../components/MotionPage'
 
 
 const categories =[
 
-  "smartphones",
   "mobile-accessories",
-  "beauty",
-
   "mens-watches",
+  "smartphones",
+  
   "sunglasses",
   "sports-accessories",
+  "beauty",
 ]
 function Home() {
   const [products,setProducts] =useState({})
@@ -42,8 +43,12 @@ function Home() {
       fetchProducts()
      },[])
 
-console.log(products)
+
   return (
+
+    <MotionPage>
+
+   
     <div>
         <HeroSlider/>
 
@@ -61,6 +66,7 @@ console.log(products)
 
 
     </div>
+    </MotionPage>
   )
 }
 
